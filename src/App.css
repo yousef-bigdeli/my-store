@@ -3,3 +3,9 @@
   margin: 0 auto;
   padding: 0 1.6rem;
 }
+
+.flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
