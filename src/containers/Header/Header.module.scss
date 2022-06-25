@@ -1,0 +1,44 @@
+@import "../../styles/variables.scss";
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px 8px;
+  @include response(desktop) {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .logoWrapper {
+    text-align: center;
+    border-bottom: 1px solid $borderColor;
+    padding-bottom: 12px;
+    @include response(desktop){
+      border: none;
+      padding: 0;
+    }
+  }
+
+  .burgerMenu {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    font-size: 2.5rem;
+    color: $iconsColor;
+    @include response(desktop) {
+      display: none;
+    }
+  }
+
+  .userSection {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 12px;
+    @include response(desktop) {
+      flex: 1;
+      margin-left: 16px;
+      padding: 0;
+    }
+  }
+}
