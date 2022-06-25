@@ -1,8 +1,12 @@
-import "./App.css";
+import "./styles/App.css";
 import Layout from "./Layout/Layout";
 
 function App() {
-  return <Layout></Layout>;
+  return (
+    <Layout>
+      
+    </Layout>
+  );
 }
 
 export default App;

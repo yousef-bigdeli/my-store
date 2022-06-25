@@ -1,9 +1,8 @@
-import Header from "../containers/Header/Header";
+import styles from './Layout.module.scss';
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Header />
       <main>{children}</main>
     </>
   );
