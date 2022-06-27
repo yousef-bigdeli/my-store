@@ -1,0 +1,128 @@
+@import "../../styles/variables";
+
+// 
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+
+  .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0c0c0c;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: opacity ease-in-out 0.3s;
+    &.show {
+      transform: translateX(0);
+      opacity: 0.5;
+    }
+  }
+
+  .mobileMenu__content {
+    position: absolute;
+    background-color: #fff;
+    width: 280px;
+    height: 100%;
+    padding: 16px 0;
+    top: 0;
+    transform: translateX(-300px);
+    transition: transform 0.3s ease-in-out;
+    overflow: scroll;
+
+    .logo {
+      border-bottom: 1px solid $borderColor;
+      padding-bottom: 12px;
+      margin: 0 16px 12px;
+    }
+
+    &.show {
+      transform: translateX(0);
+    }
+  }
+
+  .navList {
+    border-bottom: 1px solid $borderColor;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    margin: 0 16px;
+
+    .navList__item {
+      width: 100%;
+      height: 48px;
+
+      a {
+        color: $iconsColor;
+        font-weight: 500;
+        width: 100%;
+        height: 100%;
+        line-height: 3;
+      }
+    }
+  }
+
+  .categoriesWrapper {
+    padding: 12px 0;
+    p {
+      color: $iconsColor;
+      font-weight: 700;
+      margin: 0 16px 12px;
+    }
+    .categoryName {
+      height: 48px;
+      color: $iconsColor;
+      font-weight: 500;
+      display: flex;
+      padding: 0 16px;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      &.active {
+        color: $primaryColor;
+      }
+    }
+  }
+
+  .categoriesList {
+    & > li {
+      padding: 4px 0;
+      line-height: 3;
+    }
+
+    ul {
+      padding-left: 16px;
+      background: $borderColor;
+    }
+
+    .subList {
+      height: 48px;
+      .categoryName {
+        font-weight: 400;
+        font-size: 1.3rem;
+      }
+    }
+
+    .categoriesList__link {
+      padding-left: 16px;
+      background: $borderColor;
+      height: 48px;
+
+      a {
+        color: #a1a3a8;
+        font-size: 1.2rem;
+        padding-left: 16px;
+        display: flex;
+        align-items: center;
+        span {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
+
+.desktopMenu{
+  
+}

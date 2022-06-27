@@ -14,10 +14,14 @@
     text-align: center;
     border-bottom: 1px solid $borderColor;
     padding-bottom: 12px;
-    @include response(desktop){
+    @include response(desktop) {
       border: none;
       padding: 0;
     }
+  }
+  .logoLink {
+    width: 150px;
+    margin: 0 auto;
   }
 
   .burgerMenu {
@@ -26,6 +30,7 @@
     position: absolute;
     font-size: 2.5rem;
     color: $iconsColor;
+    cursor: pointer;
     @include response(desktop) {
       display: none;
     }
