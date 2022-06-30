@@ -21,7 +21,7 @@ body {
   line-height: 1.8;
   letter-spacing: 0.05em;
   font-size: 1.4rem;
-  color: #7e7e7e;
+  color: #666;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -29,10 +29,11 @@ body {
 h1,
 h2,
 h3 {
-  color: #232323;
+  color: #333;
   font-weight: 500;
 }
 
 a{
   display: block;
+  color: #666;
 }

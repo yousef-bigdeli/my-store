@@ -1,122 +1,57 @@
+import { useState } from "react";
+import Categories from "./Categories";
+
 import styles from "./Navigation.module.scss";
 import logo from "../../assets/images/logo.png";
-import {
-  IoIosArrowDown,
-  IoIosArrowUp,
-  IoIosArrowForward,
-} from "react-icons/io";
-import { useState } from "react";
+import { IoMenu } from "react-icons/io5";
 
 const menuItems = [
-  { title: "Home", to: "/home" },
   { title: "Shop", to: "/shop" },
   { title: "Best Sellers", to: "/best-sellers" },
   { title: "Offers", to: "/offers" },
   { title: "FAQ", to: "/faq" },
 ];
 
-// TODO : Coming from backend
-const categories = [
-  { name: "Electronic", parent: "/", category: "/electronic" },
-  { name: "Laptop", parent: "/electronic", category: "/electronic/laptop" },
-  {
-    name: "Apple",
-    parent: "/electronic/laptop",
-    category: "/electronic/laptop/apple",
-  },
-  {
-    name: "Asus",
-    parent: "/electronic/laptop",
-    category: "/electronic/laptop/asus",
-  },
-  { name: "Phone", parent: "/electronic", category: "/electronic/phone" },
-  {
-    name: "Apple",
-    parent: "/electronic/phone",
-    category: "/electronic/phone/apple",
-  },
-  {
-    name: "Samsung",
-    parent: "/electronic/phone",
-    category: "/electronic/phone/samsung",
-  },
-  { name: "Fashion", parent: "/", category: "/fashion" },
-  { name: "Shirt", parent: "/fashion", category: "/fashion/shirt" },
-  { name: "Pants", parent: "/fashion", category: "/fashion/pants" },
-  { name: "Books", parent: "/", category: "/books" },
-  { name: "Literature", parent: "/books", category: "/books/literature" },
-  { name: "History", parent: "/books", category: "/books/history" },
-];
-
 const Navigation = ({ isShow = false, showMenuHandler }) => {
-  const [showAccordion, setShowAccordion] = useState([]);
+  const [menuHoverStyles, setMenuHoverStyles] = useState({ maxWidth: 0 });
 
-  const showAccordionHandler = (item) => {
-    setShowAccordion((prevState) =>
-      prevState.find((cat) => cat === item.category)
-        ? prevState.filter((cat) => cat !== item.category)
-        : [...prevState, item.category]
+  const getMenuList = (items) => {
+    return (
+      <ul className={styles.navList}>
+        {items.map((item) => (
+          <li
+            key={item.to}
+            className={`${styles.navList__item} `}
+            data-id="nav-item"
+          >
+            {/* TODO: Change link with react router */}
+            <a href={item.to}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
     );
   };
 
-  const getMobileCategoriesList = (categoriesArr, parentPath = "/") => {
-    // at Mobile toggle menu
-    return categoriesArr.map((rootItem) => {
-      const hasChild = categoriesArr.some(
-        ({ parent }) => parent === rootItem.category
-      );
+  const handleNavMouseOver = (e, type) => {
+    // for menu items in desktop navigation
+    const target = e.target.parentElement;
+    const id = target.dataset.id;
+    const { width, height, left, top } = target.getBoundingClientRect();
+    const style = {
+      maxWidth: width,
+      left,
+      top: top + height,
+    };
 
-      const isShow = showAccordion.find(
-        (category) => category === rootItem.category
-      );
-
-      return (
-        rootItem.parent === parentPath && (
-          <li
-            key={rootItem.category}
-            className={`${!hasChild && styles.subList}`}
-          >
-            {hasChild ? (
-              <div
-                className={`${styles.categoryName} ${isShow && styles.active}`}
-                onClick={() => showAccordionHandler(rootItem)}
-              >
-                <span
-                  style={{ flex: 1 }}
-                  className={`${isShow && styles.active}`}
-                >
-                  {rootItem.name}
-                </span>
-
-                <i>{isShow ? <IoIosArrowUp /> : <IoIosArrowDown />}</i>
-              </div>
-            ) : (
-              // TODO: Replace <a> with React router Link
-              <a
-                href={`${rootItem.category}`}
-                className={`${styles.categoryName} ${isShow && styles.active}`}
-              >
-                {rootItem.name}
-              </a>
-            )}
-
-            {hasChild && isShow && (
-              <>
-                <div className={styles.categoriesList__link}>
-                  <a href={`${rootItem.category}`}>
-                    <span>All of category</span>
-                    <IoIosArrowForward />
-                  </a>
-                </div>
-                <ul>
-                  {getMobileCategoriesList(categories, rootItem.category)}
-                </ul>
-              </>
-            )}
-          </li>
-        )
-      );
-    });
+    if (type === "show") {
+      if (id === "nav-item" || id === "nav-category") {
+        menuHoverStyles.maxWidth === 0
+          ? setMenuHoverStyles(style)
+          : setMenuHoverStyles({ ...style, transition: "all .3s" });
+      }
+    } else {
+      setMenuHoverStyles((prevstete) => ({ ...prevstete, maxWidth: 0 }));
+    }
   };
 
   return (
@@ -137,27 +72,30 @@ const Navigation = ({ isShow = false, showMenuHandler }) => {
               <img src={logo} alt="My store" className=" lskdjf" />
             </a>
           </div>
-          <nav className={styles.navList}>
-            <ul>
-              {menuItems.map((item) => (
-                <li key={item.to} className={styles.navList__item}>
-                  {/* TODO: Change link with react router */}
-                  <a href={item.to}>{item.title}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {getMenuList(menuItems)}
           <div className={styles.categoriesWrapper}>
             <p>All Categories</p>
-            <ul className={styles.categoriesList}>
-              {getMobileCategoriesList(categories)}
-            </ul>
+            <Categories type="mobile" />
           </div>
         </div>
       </div>
 
       {/* Desktop menu */}
-      <div className={styles.desktopMenu}></div>
+      <nav
+        className={styles.desktopMenu}
+        onMouseOver={(e) => handleNavMouseOver(e, "show")}
+        onMouseLeave={(e) => handleNavMouseOver(e, "hide")}
+      >
+        <div data-id="nav-category" className={`${styles.categories}`}>
+          <IoMenu />
+          <p>All categories</p>
+          <div className={styles.categories__wrapper}>
+            <Categories type="desktop" />
+          </div>
+        </div>
+        {getMenuList(menuItems)}
+        <span className={styles.hoverEffect} style={menuHoverStyles}></span>
+      </nav>
     </>
   );
 };

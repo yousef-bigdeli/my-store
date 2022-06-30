@@ -1,7 +1,9 @@
 $primaryColor: #0163d2;
 $secondaryColor: #eff2f7;
-$iconsColor: #424750;
-$borderColor: #f0f0f1;
+$titleTextColor: #333;
+$primaryTextColor: #666;
+$borderColor: #e0e0e2;
+
 
 @mixin response($breakpoint) {
   @if ($breakpoint == phone) {
