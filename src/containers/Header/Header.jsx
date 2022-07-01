@@ -1,6 +1,11 @@
 import styles from "./Header.module.scss";
 import logo from "../../assets/images/logo.png";
-import { IoMenu } from "react-icons/io5";
+import {
+  IoMenu,
+  IoLogInOutline,
+  IoChevronDown,
+  IoPerson,
+} from "react-icons/io5";
 import Navigation from "../../components/Header/Navigation/Navigation";
 import { useState } from "react";
 import SearchBar from "../../components/Header/SearchBar";
@@ -26,14 +31,27 @@ const Header = () => {
               </a>
             </div>
           </div>
-          <div className={styles.userSection}>
+          <div className={styles.searchWrapper}>
             <SearchBar />
-            <div>
-              <div className={styles.cartWrapper}>
+            <div className={styles.userSection}>
+              <div className={styles.login}>
+                <a href="/login" className={styles.link}>
+                  <span>Login</span>
+                  <span className={styles.icon}>
+                    <IoLogInOutline />
+                  </span>
+                </a>
+              </div>
+              {/* <div className={styles.profile}>
+                <a href="/dashboard">
+                  <IoPerson />
+                </a>
+              </div> */}
+              <span className={styles.sepreate}></span>
+              <div className={styles.cart}>
                 {/* TODO: Create Cart component */}
                 cart
               </div>
-              <div className={styles.userInfo}></div>
             </div>
           </div>
         </div>
