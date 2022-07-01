@@ -3,6 +3,7 @@ import logo from "../../assets/images/logo.png";
 import { IoMenu } from "react-icons/io5";
 import Navigation from "../../components/Header/Navigation";
 import { useState } from "react";
+import SearchBar from "../../components/Header/SearchBar";
 
 const Header = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
@@ -26,10 +27,7 @@ const Header = () => {
             </div>
           </div>
           <div className={styles.userSection}>
-            <div>
-              {/* TODO: Create SearchBar component */}
-              Search
-            </div>
+            <SearchBar />
             <div>
               <div className={styles.cartWrapper}>
                 {/* TODO: Create Cart component */}
