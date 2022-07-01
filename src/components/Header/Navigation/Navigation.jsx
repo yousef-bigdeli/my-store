@@ -2,7 +2,7 @@ import { useState } from "react";
 import Categories from "./Categories";
 
 import styles from "./Navigation.module.scss";
-import logo from "../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.png";
 import { IoMenu } from "react-icons/io5";
 
 const menuItems = [

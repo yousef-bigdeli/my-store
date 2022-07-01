@@ -1,7 +1,7 @@
 import styles from "./Header.module.scss";
 import logo from "../../assets/images/logo.png";
 import { IoMenu } from "react-icons/io5";
-import Navigation from "../../components/Header/Navigation";
+import Navigation from "../../components/Header/Navigation/Navigation";
 import { useState } from "react";
 import SearchBar from "../../components/Header/SearchBar";
 
