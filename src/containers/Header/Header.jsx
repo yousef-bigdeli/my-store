@@ -3,12 +3,12 @@ import logo from "../../assets/images/logo.png";
 import {
   IoMenu,
   IoLogInOutline,
-  IoChevronDown,
   IoPerson,
 } from "react-icons/io5";
 import Navigation from "../../components/Header/Navigation/Navigation";
 import { useState } from "react";
 import SearchBar from "../../components/Header/SearchBar";
+import Cart from "../../components/Header/Cart";
 
 const Header = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
@@ -38,20 +38,18 @@ const Header = () => {
                 <a href="/login" className={styles.link}>
                   <span>Login</span>
                   <span className={styles.icon}>
-                    <IoLogInOutline />
+                    <IoLogInOutline style={{ width: "24px", height: "24px" }}/>
                   </span>
                 </a>
               </div>
+              {/* TODO: condition for show login or profile */}
               {/* <div className={styles.profile}>
                 <a href="/dashboard">
-                  <IoPerson />
+                  <IoPerson style={{ width: "24px", height: "24px" }}/>
                 </a>
               </div> */}
               <span className={styles.sepreate}></span>
-              <div className={styles.cart}>
-                {/* TODO: Create Cart component */}
-                cart
-              </div>
+              <Cart />
             </div>
           </div>
         </div>

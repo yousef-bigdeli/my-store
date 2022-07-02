@@ -22,6 +22,9 @@
     width: 150px;
     margin: 0 auto;
     text-align: center;
+    @include response(desktop) {
+      text-align: left;
+    }
   }
 
   .burgerMenu {
@@ -56,14 +59,9 @@
 
     .login {
       transition: all 0.3s;
-      &:hover {
-        transform: scale(1.1);
-        & > .link {
-          color: #000;
-        }
-      }
+      
       .link {
-        font-size: 1.3rem;
+        // font-size: 1.3rem;
         color: $titleTextColor;
         display: flex;
         align-items: center;
