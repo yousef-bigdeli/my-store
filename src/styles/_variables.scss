@@ -1,0 +1,35 @@
+$primaryColor: #0163d2;
+$secondaryColor: #eff2f7;
+$titleTextColor: #333;
+$primaryTextColor: #666;
+$borderColor: #e0e0e2;
+
+
+@mixin response($breakpoint) {
+  @if ($breakpoint == phone) {
+    // < 640px
+    @media only screen and (max-width: 40em) {
+      @content;
+    }
+  } @else if ($breakpoint == tablet) {
+    // 640px < && > 1024px
+    @media only screen and (min-width: 40em) and (max-width: 64em) {
+      @content;
+    }
+  } @else if ($breakpoint == desktop) {
+    // 1024px <
+    @media only screen and (min-width: 64em) {
+      @content;
+    }
+  } @else if ($breakpoint == larg) {
+    // 1200px <
+    @media only screen and (min-width: 75em) {
+      @content;
+    }
+  } @else if ($breakpoint == xlarg) {
+    // 1800px <
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    }
+  }
+}

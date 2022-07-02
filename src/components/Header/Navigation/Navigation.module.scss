@@ -1,0 +1,141 @@
+@import "../../../styles/variables";
+
+//
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  @include response(desktop) {
+    display: none;
+  }
+
+  .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0c0c0c;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: opacity ease-in-out 0.3s;
+    &.show {
+      transform: translateX(0);
+      opacity: 0.5;
+    }
+  }
+
+  .mobileMenu__content {
+    position: absolute;
+    background-color: #fff;
+    width: 280px;
+    height: 100%;
+    padding: 16px 0;
+    top: 0;
+    transform: translateX(-300px);
+    transition: transform 0.3s ease-in-out;
+    overflow: scroll;
+
+    .logo {
+      border-bottom: 1px solid $borderColor;
+      padding-bottom: 12px;
+      margin: 0 16px 12px;
+    }
+
+    &.show {
+      transform: translateX(0);
+    }
+  }
+
+  .navList {
+    border-bottom: 1px solid $borderColor;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    margin: 0 16px;
+
+    .navList__item {
+      width: 100%;
+      height: 48px;
+
+      a {
+        color: $primaryTextColor;
+        font-weight: 500;
+        width: 100%;
+        height: 100%;
+        line-height: 3;
+      }
+    }
+  }
+
+  .categoriesWrapper {
+    padding: 12px 0;
+    p {
+      color: $primaryTextColor;
+      font-weight: 700;
+      margin: 0 16px 12px;
+    }
+  }
+}
+
+.desktopMenu {
+  display: none;
+  margin: 0 16px;
+  @include response(desktop) {
+    display: flex;
+  }
+
+  .categories {
+    width: 160px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    color: $titleTextColor;
+    font-weight: 500;
+    p {
+      width: 100%;
+      padding-left: 8px;
+      line-height: 3;
+    }
+    &::after {
+      content: "";
+      display: block;
+      height: 20px;
+      width: 1px;
+      background: $borderColor;
+    }
+    .categories__wrapper {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+    &:hover > .categories__wrapper {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .navList {
+    display: flex;
+
+    .navList__item {
+      position: relative;
+      line-height: 3;
+      a {
+        padding: 0 16px;
+      }
+    }
+  }
+
+  .hoverEffect {
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-width: 0;
+    height: 2px;
+    transition: max-width 0.3s;
+    background-color: $primaryColor;
+    pointer-events: none;
+  }
+}
