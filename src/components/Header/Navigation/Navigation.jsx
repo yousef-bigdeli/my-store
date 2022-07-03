@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from 'react-router-dom';
 import Categories from "./Categories";
 
 import styles from "./Navigation.module.scss";
@@ -6,9 +7,8 @@ import logo from "../../../assets/images/logo.png";
 import { IoMenu } from "react-icons/io5";
 
 const menuItems = [
-  { title: "Shop", to: "/shop" },
-  { title: "Best Sellers", to: "/best-sellers" },
-  { title: "Offers", to: "/offers" },
+  { title: "Best Selling", to: "/best-selling" },
+  { title: "Offers", to: "/offer" },
   { title: "FAQ", to: "/faq" },
 ];
 
@@ -25,7 +25,7 @@ const Navigation = ({ isShow = false, showMenuHandler }) => {
             data-id="nav-item"
           >
             {/* TODO: Change link with react router */}
-            <a href={item.to}>{item.title}</a>
+            <NavLink to={item.to}>{item.title}</NavLink>
           </li>
         ))}
       </ul>
