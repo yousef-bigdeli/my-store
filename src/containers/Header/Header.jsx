@@ -1,14 +1,13 @@
-import styles from "./Header.module.scss";
-import logo from "../../assets/images/logo.png";
-import {
-  IoMenu,
-  IoLogInOutline,
-  IoPerson,
-} from "react-icons/io5";
-import Navigation from "../../components/Header/Navigation/Navigation";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import Navigation from "../../components/Header/Navigation/Navigation";
 import SearchBar from "../../components/Header/SearchBar";
 import Cart from "../../components/Header/Cart";
+
+import styles from "./Header.module.scss";
+import logo from "../../assets/images/logo.png";
+import { IoMenu, IoLogInOutline, IoPerson } from "react-icons/io5";
 
 const Header = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
@@ -26,27 +25,27 @@ const Header = () => {
               <IoMenu />
             </div>
             <div>
-              <a href="/" className={styles.logoLink}>
+              <Link to="/" className={styles.logoLink}>
                 <img src={logo} alt="My store" />
-              </a>
+              </Link>
             </div>
           </div>
           <div className={styles.searchWrapper}>
             <SearchBar />
             <div className={styles.userSection}>
               <div className={styles.login}>
-                <a href="/login" className={styles.link}>
+                <Link to="/login" className={styles.link}>
                   <span>Login</span>
                   <span className={styles.icon}>
-                    <IoLogInOutline style={{ width: "24px", height: "24px" }}/>
+                    <IoLogInOutline style={{ width: "24px", height: "24px" }} />
                   </span>
-                </a>
+                </Link>
               </div>
               {/* TODO: condition for show login or profile */}
               {/* <div className={styles.profile}>
-                <a href="/dashboard">
+                <Link to="/dashboard">
                   <IoPerson style={{ width: "24px", height: "24px" }}/>
-                </a>
+                </Link>
               </div> */}
               <span className={styles.sepreate}></span>
               <Cart />

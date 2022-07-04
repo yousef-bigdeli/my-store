@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import styles from "./Categories.module.scss";
 import {
   IoIosArrowDown,
@@ -9,31 +10,31 @@ import {
 
 // TODO : Coming from backend
 const categories = [
-  { name: "Electronic", parent: "/", category: "/electronic-devices" },
+  { name: "Electronic", parent: "", category: "electronic-devices" },
   {
     name: "Laptop",
-    parent: "/electronic-devices",
-    category: "/laptop-notebook",
+    parent: "electronic-devices",
+    category: "laptop-notebook",
   },
   {
     name: "Apple",
-    parent: "/laptop-notebook",
-    category: "/laptop-notebook/apple",
+    parent: "laptop-notebook",
+    category: "laptop-notebook/apple",
   },
   {
     name: "Asus",
-    parent: "/laptop-notebook",
-    category: "/laptop-notebook/asus",
+    parent: "laptop-notebook",
+    category: "laptop-notebook/asus",
   },
   {
     name: "Phone",
-    parent: "/electronic-devices",
-    category: "/electronic-phone",
+    parent: "electronic-devices",
+    category: "electronic-phone",
   },
   {
     name: "Apple",
-    parent: "/electronic-phone",
-    category: "/electronic-phone/apple",
+    parent: "electronic-phone",
+    category: "electronic-phone/apple",
   },
   {
     name: "Samsung",
@@ -52,57 +53,58 @@ const categories = [
   },
   {
     name: "Headphone",
-    parent: "/electronic-devices",
-    category: "/electronic-headphone",
+    parent: "electronic-devices",
+    category: "electronic-headphone",
   },
   {
     name: "JBL",
-    parent: "/electronic-headphone",
-    category: "/electronic-headphone/jbl",
+    parent: "electronic-headphone",
+    category: "electronic-headphone/jbl",
   },
   {
     name: "Sony",
-    parent: "/electronic-headphone",
-    category: "/electronic-headphone/sony",
+    parent: "electronic-headphone",
+    category: "electronic-headphone/sony",
   },
   {
     name: "Beats",
-    parent: "/electronic-headphone",
-    category: "/electronic-headphone/beats",
+    parent: "electronic-headphone",
+    category: "electronic-headphone/beats",
   },
   {
     name: "Jabra",
-    parent: "/electronic-headphone",
-    category: "/electronic-headphone/jabra",
+    parent: "electronic-headphone",
+    category: "electronic-headphone/jabra",
   },
   {
     name: "Tablet",
-    parent: "/electronic-devices",
-    category: "/electronic-tablet",
+    parent: "electronic-devices",
+    category: "electronic-tablet",
   },
-  { name: "Fashion", parent: "/", category: "/fashion" },
-  { name: "Shirt", parent: "/fashion", category: "/fashion-shirt" },
-  { name: "Men", parent: "/fashion-shirt", category: "/men-shirt" },
-  { name: "Women", parent: "/fashion-shirt", category: "/women-shirt" },
-  { name: "Pants", parent: "/fashion", category: "/fashion-pants" },
-  { name: "Jeans", parent: "/fashion-pants", category: "/jeans-pants" },
+  { name: "Fashion", parent: "", category: "fashion" },
+  { name: "Shirt", parent: "fashion", category: "fashion-shirt" },
+  { name: "Men", parent: "fashion-shirt", category: "men-shirt" },
+  { name: "Women", parent: "fashion-shirt", category: "women-shirt" },
+  { name: "Pants", parent: "fashion", category: "fashion-pants" },
+  { name: "Jeans", parent: "fashion-pants", category: "jeans-pants" },
   {
     name: "Cotton",
-    parent: "/fashion-pants",
-    category: "/cotton-pants",
+    parent: "fashion-pants",
+    category: "cotton-pants",
   },
   {
     name: "Cloth ",
-    parent: "/fashion-pants",
-    category: "/cloth-pants",
+    parent: "fashion-pants",
+    category: "cloth-pants",
   },
-  { name: "Books", parent: "/", category: "/books" },
-  { name: "Literature", parent: "/books", category: "/books-literature" },
-  { name: "History", parent: "/books", category: "/books-history" },
+  { name: "Books", parent: "", category: "books" },
+  { name: "Literature", parent: "books", category: "books-literature" },
+  { name: "History", parent: "books", category: "books-history" },
 ];
 
-const Categories = ({ type }) => {
+const Categories = ({ type, showMenuHandler }) => {
   const [showAccordion, setShowAccordion] = useState([]);
+  const basePath = "/category/";
 
   const showAccordionHandler = (item) => {
     // in the mobile toggle menu
@@ -113,7 +115,7 @@ const Categories = ({ type }) => {
     );
   };
 
-  const getMobileCategoriesList = (parentPath = "/") => {
+  const getMobileCategoriesList = (parentPath = "") => {
     // at Mobile toggle menu
     return categories.map((rootItem) => {
       const hasChild = categories.some(
@@ -145,24 +147,23 @@ const Categories = ({ type }) => {
                   <i>{isShow ? <IoIosArrowUp /> : <IoIosArrowDown />}</i>
                 </div>
               ) : (
-                // TODO: Replace <a> with React router Link
-                <a
-                  href={`${rootItem.category}`}
+                <NavLink
+                  to={`${basePath}${rootItem.category}`}
                   className={`${styles.categoryName} ${
                     isShow && styles.active
                   }`}
                 >
                   {rootItem.name}
-                </a>
+                </NavLink>
               )}
 
               {hasChild && isShow && (
                 <>
                   <div className={styles.categoriesList__link}>
-                    <a href={`${rootItem.category}`}>
+                    <NavLink to={`${basePath}${rootItem.category}`}>
                       <span>See All</span>
                       <IoIosArrowForward />
-                    </a>
+                    </NavLink>
                   </div>
                   {getMobileCategoriesList(rootItem.category)}
                 </>
@@ -174,61 +175,64 @@ const Categories = ({ type }) => {
     });
   };
 
-  const getDesktopCategoriesList = (parentPath = "/") => {
+  const getDesktopCategoriesList = (parentPath = "") => {
     return (
       <div className={`${styles.categoriesDesktop}`}>
-        <div className={styles.wrapper}>
-          {categories.map(
-            (item) =>
-              item.parent === parentPath && (
-                <ul className={styles.categoryList} key={item.category}>
-                  <li className={styles.title}>
-                    <span>{item.name}</span>
-                    <i>
-                      <IoIosArrowDown />
-                    </i>
-                    <div className={styles.content}>
-                      <a href={`${item.category}`} className={styles.groupLink}>
-                        See All {item.name} <IoIosArrowForward />
-                      </a>
-                      <div className={styles.categoryList__groups}>
-                        {categories.map(
-                          (itemLevel2) =>
-                            itemLevel2.parent === item.category && (
-                              <Fragment key={itemLevel2.category}>
-                                <a
-                                  href={`${itemLevel2.category} `}
-                                  className={styles.group__title}
-                                  key={itemLevel2.category}
-                                >
-                                  {itemLevel2.name}
-                                  <IoIosArrowForward />
-                                </a>
-
-                                {categories.map(
-                                  (itemLevel3) =>
-                                    itemLevel3.parent ===
-                                      itemLevel2.category && (
-                                      <a
-                                        href={`${itemLevel3.category}`}
-                                        className={styles.group__item}
-                                        key={itemLevel3.category}
+              <div className={styles.wrapper}>
+                {categories.map(
+                  (item) =>
+                    item.parent === parentPath && (
+                      <ul className={styles.categoryList} key={item.category}>
+                        <li className={styles.title}>
+                          <span>{item.name}</span>
+                          <i>
+                            <IoIosArrowDown />
+                          </i>
+                          <div className={styles.content}>
+                            <NavLink
+                              to={`${basePath}${item.category}`}
+                              className={styles.groupLink}
+                            >
+                              See All {item.name} <IoIosArrowForward />
+                            </NavLink>
+                            <div className={styles.categoryList__groups}>
+                              {categories.map(
+                                (itemLevel2) =>
+                                  itemLevel2.parent === item.category && (
+                                    <Fragment key={itemLevel2.category}>
+                                      <NavLink
+                                        to={`${basePath}${itemLevel2.category} `}
+                                        className={styles.group__title}
+                                        key={itemLevel2.category}
                                       >
-                                        {itemLevel3.name}
-                                      </a>
-                                    )
-                                )}
-                              </Fragment>
-                            )
-                        )}
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              )
-          )}
-        </div>
-      </div>
+                                        {itemLevel2.name}
+                                        <IoIosArrowForward />
+                                      </NavLink>
+
+                                      {categories.map(
+                                        (itemLevel3) =>
+                                          itemLevel3.parent ===
+                                            itemLevel2.category && (
+                                            <NavLink
+                                              to={`${basePath}${itemLevel3.category}`}
+                                              className={styles.group__item}
+                                              key={itemLevel3.category}
+                                            >
+                                              {itemLevel3.name}
+                                            </NavLink>
+                                          )
+                                      )}
+                                    </Fragment>
+                                  )
+                              )}
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    )
+                )}
+              </div>
+            </div>
     );
   };
 

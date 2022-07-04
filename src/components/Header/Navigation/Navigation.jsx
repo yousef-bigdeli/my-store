@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import Categories from "./Categories";
 
 import styles from "./Navigation.module.scss";
@@ -24,7 +24,6 @@ const Navigation = ({ isShow = false, showMenuHandler }) => {
             className={`${styles.navList__item} `}
             data-id="nav-item"
           >
-            {/* TODO: Change link with react router */}
             <NavLink to={item.to}>{item.title}</NavLink>
           </li>
         ))}
@@ -68,9 +67,9 @@ const Navigation = ({ isShow = false, showMenuHandler }) => {
           }`}
         >
           <div className={styles.logo}>
-            <a href="/">
+            <NavLink to="/">
               <img src={logo} alt="My store" className=" lskdjf" />
-            </a>
+            </NavLink>
           </div>
           {getMenuList(menuItems)}
           <div className={styles.categoriesWrapper}>
