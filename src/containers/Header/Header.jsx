@@ -10,7 +10,7 @@ import logo from "../../assets/images/logo.png";
 import { IoMenu, IoLogInOutline, IoPerson } from "react-icons/io5";
 
 const Header = () => {
-  const [isShowMenu, setIsShowMenu] = useState(false);
+  const [isShowMenu, setIsShowMenu] = useState(false); // show categories list on desktop menu & toggle menu on mobile
 
   const showMenuHandler = () => {
     setIsShowMenu((prevState) => !prevState);
@@ -30,6 +30,7 @@ const Header = () => {
               </Link>
             </div>
           </div>
+
           <div className={styles.searchWrapper}>
             <SearchBar />
             <div className={styles.userSection}>

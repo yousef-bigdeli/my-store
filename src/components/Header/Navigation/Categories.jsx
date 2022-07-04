@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import styles from "./Categories.module.scss";
 import {
   IoIosArrowDown,
@@ -102,9 +102,17 @@ const categories = [
   { name: "History", parent: "books", category: "books-history" },
 ];
 
-const Categories = ({ type, showMenuHandler }) => {
+// Custom link for every list items
+const CategoryLink = ({ children, to, className }) => {
+  return (
+    <NavLink to={`/category/${to}`} className={className}>
+      {children}
+    </NavLink>
+  );
+};
+
+const Categories = ({ type }) => {
   const [showAccordion, setShowAccordion] = useState([]);
-  const basePath = "/category/";
 
   const showAccordionHandler = (item) => {
     // in the mobile toggle menu
@@ -147,23 +155,23 @@ const Categories = ({ type, showMenuHandler }) => {
                   <i>{isShow ? <IoIosArrowUp /> : <IoIosArrowDown />}</i>
                 </div>
               ) : (
-                <NavLink
-                  to={`${basePath}${rootItem.category}`}
+                <CategoryLink
+                  to={rootItem.category}
                   className={`${styles.categoryName} ${
                     isShow && styles.active
                   }`}
                 >
                   {rootItem.name}
-                </NavLink>
+                </CategoryLink>
               )}
 
               {hasChild && isShow && (
                 <>
                   <div className={styles.categoriesList__link}>
-                    <NavLink to={`${basePath}${rootItem.category}`}>
+                    <CategoryLink to={rootItem.category}>
                       <span>See All</span>
                       <IoIosArrowForward />
-                    </NavLink>
+                    </CategoryLink>
                   </div>
                   {getMobileCategoriesList(rootItem.category)}
                 </>
@@ -178,61 +186,61 @@ const Categories = ({ type, showMenuHandler }) => {
   const getDesktopCategoriesList = (parentPath = "") => {
     return (
       <div className={`${styles.categoriesDesktop}`}>
-              <div className={styles.wrapper}>
-                {categories.map(
-                  (item) =>
-                    item.parent === parentPath && (
-                      <ul className={styles.categoryList} key={item.category}>
-                        <li className={styles.title}>
-                          <span>{item.name}</span>
-                          <i>
-                            <IoIosArrowDown />
-                          </i>
-                          <div className={styles.content}>
-                            <NavLink
-                              to={`${basePath}${item.category}`}
-                              className={styles.groupLink}
-                            >
-                              See All {item.name} <IoIosArrowForward />
-                            </NavLink>
-                            <div className={styles.categoryList__groups}>
-                              {categories.map(
-                                (itemLevel2) =>
-                                  itemLevel2.parent === item.category && (
-                                    <Fragment key={itemLevel2.category}>
-                                      <NavLink
-                                        to={`${basePath}${itemLevel2.category} `}
-                                        className={styles.group__title}
-                                        key={itemLevel2.category}
-                                      >
-                                        {itemLevel2.name}
-                                        <IoIosArrowForward />
-                                      </NavLink>
+        <div className={styles.wrapper}>
+          {categories.map(
+            (item) =>
+              item.parent === parentPath && (
+                <ul className={styles.categoryList} key={item.category}>
+                  <li className={styles.title}>
+                    <span>{item.name}</span>
+                    <i>
+                      <IoIosArrowDown />
+                    </i>
+                    <div className={styles.content}>
+                      <CategoryLink
+                        to={item.category}
+                        className={styles.groupLink}
+                      >
+                        See All {item.name} <IoIosArrowForward />
+                      </CategoryLink>
+                      <div className={styles.categoryList__groups}>
+                        {categories.map(
+                          (itemLevel2) =>
+                            itemLevel2.parent === item.category && (
+                              <Fragment key={itemLevel2.category}>
+                                <CategoryLink
+                                  to={itemLevel2.category}
+                                  className={styles.group__title}
+                                  key={itemLevel2.category}
+                                >
+                                  {itemLevel2.name}
+                                  <IoIosArrowForward />
+                                </CategoryLink>
 
-                                      {categories.map(
-                                        (itemLevel3) =>
-                                          itemLevel3.parent ===
-                                            itemLevel2.category && (
-                                            <NavLink
-                                              to={`${basePath}${itemLevel3.category}`}
-                                              className={styles.group__item}
-                                              key={itemLevel3.category}
-                                            >
-                                              {itemLevel3.name}
-                                            </NavLink>
-                                          )
-                                      )}
-                                    </Fragment>
-                                  )
-                              )}
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    )
-                )}
-              </div>
-            </div>
+                                {categories.map(
+                                  (itemLevel3) =>
+                                    itemLevel3.parent ===
+                                      itemLevel2.category && (
+                                      <CategoryLink
+                                        to={itemLevel3.category}
+                                        className={styles.group__item}
+                                        key={itemLevel3.category}
+                                      >
+                                        {itemLevel3.name}
+                                      </CategoryLink>
+                                    )
+                                )}
+                              </Fragment>
+                            )
+                        )}
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              )
+          )}
+        </div>
+      </div>
     );
   };
 

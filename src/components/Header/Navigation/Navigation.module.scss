@@ -107,10 +107,10 @@
       visibility: hidden;
       opacity: 0;
       transition: opacity 0.4s ease-in-out;
-    }
-    &:hover > .categories__wrapper {
-      visibility: visible;
-      opacity: 1;
+      &.show {
+        visibility: visible;
+        opacity: 1;
+      }
     }
   }
 

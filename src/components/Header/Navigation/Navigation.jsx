@@ -85,11 +85,20 @@ const Navigation = ({ isShow = false, showMenuHandler }) => {
         onMouseOver={(e) => handleNavMouseOver(e, "show")}
         onMouseLeave={(e) => handleNavMouseOver(e, "hide")}
       >
-        <div data-id="nav-category" className={`${styles.categories}`}>
+        <div
+          data-id="nav-category"
+          className={`${styles.categories}`}
+          onMouseEnter={showMenuHandler}
+          onMouseLeave={showMenuHandler}
+        >
           <IoMenu />
           <p>All categories</p>
-          <div className={styles.categories__wrapper}>
-            <Categories type="desktop" />
+          <div
+            className={`${styles.categories__wrapper} ${
+              isShow ? styles.show : ""
+            }`}
+          >
+            <Categories type="desktop" showMenuHandler={showMenuHandler} />
           </div>
         </div>
         {getMenuList(menuItems)}
