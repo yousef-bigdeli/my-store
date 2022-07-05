@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Categories.module.scss";
 import {
   IoIosArrowDown,
@@ -103,15 +103,19 @@ const categories = [
 ];
 
 // Custom link for every list items
-const CategoryLink = ({ children, to, className }) => {
+const CategoryLink = ({ children, to, className, handleShowMenu }) => {
   return (
-    <NavLink to={`/category/${to}`} className={className}>
+    <NavLink
+      to={`/category/${to}`}
+      className={className}
+      onClick={() => handleShowMenu(false)}
+    >
       {children}
     </NavLink>
   );
 };
 
-const Categories = ({ type }) => {
+const Categories = ({ type, handleShowMenu }) => {
   const [showAccordion, setShowAccordion] = useState([]);
 
   const showAccordionHandler = (item) => {
@@ -135,9 +139,9 @@ const Categories = ({ type }) => {
       );
 
       return (
-        <ul className={styles.categoriesMobile} key={rootItem.category}>
-          {rootItem.parent === parentPath && (
-            <li className={`${!hasChild && styles.subList}`}>
+        rootItem.parent === parentPath && (
+          <ul className={styles.categoriesMobile} key={rootItem.category}>
+            <li className={`${!hasChild && styles.categoryItem}`}>
               {hasChild ? (
                 <div
                   className={`${styles.categoryName} ${
@@ -157,28 +161,32 @@ const Categories = ({ type }) => {
               ) : (
                 <CategoryLink
                   to={rootItem.category}
-                  className={`${styles.categoryName} ${
-                    isShow && styles.active
-                  }`}
+                  className={styles.categoryName}
+                  handleShowMenu={handleShowMenu}
                 >
                   {rootItem.name}
                 </CategoryLink>
               )}
 
-              {hasChild && isShow && (
-                <>
+              {hasChild && (
+                <div
+                  className={`${styles.subList} ${isShow ? styles.show : ""}`}
+                >
                   <div className={styles.categoriesList__link}>
-                    <CategoryLink to={rootItem.category}>
+                    <CategoryLink
+                      to={rootItem.category}
+                      handleShowMenu={handleShowMenu}
+                    >
                       <span>See All</span>
                       <IoIosArrowForward />
                     </CategoryLink>
                   </div>
                   {getMobileCategoriesList(rootItem.category)}
-                </>
+                </div>
               )}
             </li>
-          )}
-        </ul>
+          </ul>
+        )
       );
     });
   };
@@ -200,6 +208,7 @@ const Categories = ({ type }) => {
                       <CategoryLink
                         to={item.category}
                         className={styles.groupLink}
+                        handleShowMenu={handleShowMenu}
                       >
                         See All {item.name} <IoIosArrowForward />
                       </CategoryLink>
@@ -212,6 +221,7 @@ const Categories = ({ type }) => {
                                   to={itemLevel2.category}
                                   className={styles.group__title}
                                   key={itemLevel2.category}
+                                  handleShowMenu={handleShowMenu}
                                 >
                                   {itemLevel2.name}
                                   <IoIosArrowForward />
@@ -225,6 +235,7 @@ const Categories = ({ type }) => {
                                         to={itemLevel3.category}
                                         className={styles.group__item}
                                         key={itemLevel3.category}
+                                        handleShowMenu={handleShowMenu}
                                       >
                                         {itemLevel3.name}
                                       </CategoryLink>

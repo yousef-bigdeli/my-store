@@ -25,11 +25,17 @@
     background: $borderColor;
   }
 
-  .subList {
+  .categoryItem {
     height: 48px;
     .categoryName {
       font-weight: 400;
       font-size: 1.3rem;
+    }
+  }
+  .subList{
+    display: none;
+    &.show{
+      display: block;
     }
   }
 

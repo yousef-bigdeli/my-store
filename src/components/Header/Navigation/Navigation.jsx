@@ -29,7 +29,7 @@ const Navigation = () => {
             className={`${styles.navList__item} `}
             data-id="nav-item"
           >
-            <NavLink to={item.to}>{item.title}</NavLink>
+            <NavLink to={item.to} onClick={() => handleShowMenu(false)}>{item.title}</NavLink>
           </li>
         ))}
       </ul>
@@ -76,14 +76,14 @@ const Navigation = () => {
           }`}
         >
           <div className={styles.logo}>
-            <NavLink to="/">
+            <NavLink to="/" onClick={() => handleShowMenu(false)}>
               <img src={logo} alt="My store" className=" lskdjf" />
             </NavLink>
           </div>
           {getMenuList(menuItems)}
           <div className={styles.categoriesWrapper}>
             <p>All Categories</p>
-            <Categories type="mobile" />
+            <Categories type="mobile" handleShowMenu={handleShowMenu}/>
           </div>
         </div>
       </div>
