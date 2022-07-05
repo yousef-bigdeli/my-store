@@ -1,11 +1,25 @@
 @import "../../../styles/variables";
 
-//
+//Mpbile
 .mobileMenu {
   display: flex;
   flex-direction: column;
   @include response(desktop) {
     display: none;
+  }
+
+  .burgerMenu {
+    width: 35px;
+    height: 35px;
+    top: 12px;
+    left: 16px;
+    position: absolute;
+    font-size: 2.5rem;
+    color: $primaryTextColor;
+    cursor: pointer;
+    @include response(desktop) {
+      display: none;
+    }
   }
 
   .cover {
@@ -76,6 +90,7 @@
   }
 }
 
+// Desktop
 .desktopMenu {
   display: none;
   margin: 0 16px;

@@ -12,8 +12,13 @@ const menuItems = [
   { title: "FAQ", to: "/faq" },
 ];
 
-const Navigation = ({ isShow = false, showMenuHandler }) => {
+const Navigation = () => {
   const [menuHoverStyles, setMenuHoverStyles] = useState({ maxWidth: 0 });
+  const [isShowMenu, setIsShowMenu] = useState(false); // show categories list on desktop menu & toggle menu on mobile
+
+  const handleShowMenu = (value) => {
+    setIsShowMenu(value);
+  };
 
   const getMenuList = (items) => {
     return (
@@ -56,14 +61,18 @@ const Navigation = ({ isShow = false, showMenuHandler }) => {
   return (
     <>
       {/* Mobile toggle menu */}
+
       <div className={styles.mobileMenu}>
+        <div className={styles.burgerMenu} onClick={() => handleShowMenu(true)}>
+          <IoMenu />
+        </div>
         <div
-          className={`${styles.cover} ${isShow ? styles.show : ""}`}
-          onClick={showMenuHandler}
+          className={`${styles.cover} ${isShowMenu ? styles.show : ""}`}
+          onClick={() => handleShowMenu(false)}
         ></div>
         <div
           className={`${styles.mobileMenu__content} ${
-            isShow ? styles.show : ""
+            isShowMenu ? styles.show : ""
           }`}
         >
           <div className={styles.logo}>
@@ -88,17 +97,17 @@ const Navigation = ({ isShow = false, showMenuHandler }) => {
         <div
           data-id="nav-category"
           className={`${styles.categories}`}
-          onMouseEnter={showMenuHandler}
-          onMouseLeave={showMenuHandler}
+          onMouseEnter={() => handleShowMenu(true)}
+          onMouseLeave={() => handleShowMenu(false)}
         >
           <IoMenu />
           <p>All categories</p>
           <div
             className={`${styles.categories__wrapper} ${
-              isShow ? styles.show : ""
+              isShowMenu ? styles.show : ""
             }`}
           >
-            <Categories type="desktop" showMenuHandler={showMenuHandler} />
+            <Categories type="desktop" handleShowMenu={handleShowMenu} />
           </div>
         </div>
         {getMenuList(menuItems)}
