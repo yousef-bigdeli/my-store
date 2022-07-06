@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import Categories from "./Categories";
 
 import styles from "./Navigation.module.scss";
@@ -6,14 +7,18 @@ import logo from "../../../assets/images/logo.png";
 import { IoMenu } from "react-icons/io5";
 
 const menuItems = [
-  { title: "Shop", to: "/shop" },
-  { title: "Best Sellers", to: "/best-sellers" },
-  { title: "Offers", to: "/offers" },
+  { title: "Best Selling", to: "/best-selling" },
+  { title: "Offers", to: "/offer" },
   { title: "FAQ", to: "/faq" },
 ];
 
-const Navigation = ({ isShow = false, showMenuHandler }) => {
+const Navigation = () => {
   const [menuHoverStyles, setMenuHoverStyles] = useState({ maxWidth: 0 });
+  const [isShowMenu, setIsShowMenu] = useState(false); // show categories list on desktop menu & toggle menu on mobile
+
+  const handleShowMenu = (value) => {
+    setIsShowMenu(value);
+  };
 
   const getMenuList = (items) => {
     return (
@@ -24,8 +29,7 @@ const Navigation = ({ isShow = false, showMenuHandler }) => {
             className={`${styles.navList__item} `}
             data-id="nav-item"
           >
-            {/* TODO: Change link with react router */}
-            <a href={item.to}>{item.title}</a>
+            <NavLink to={item.to} onClick={() => handleShowMenu(false)}>{item.title}</NavLink>
           </li>
         ))}
       </ul>
@@ -57,25 +61,29 @@ const Navigation = ({ isShow = false, showMenuHandler }) => {
   return (
     <>
       {/* Mobile toggle menu */}
+
       <div className={styles.mobileMenu}>
+        <div className={styles.burgerMenu} onClick={() => handleShowMenu(true)}>
+          <IoMenu />
+        </div>
         <div
-          className={`${styles.cover} ${isShow ? styles.show : ""}`}
-          onClick={showMenuHandler}
+          className={`${styles.cover} ${isShowMenu ? styles.show : ""}`}
+          onClick={() => handleShowMenu(false)}
         ></div>
         <div
           className={`${styles.mobileMenu__content} ${
-            isShow ? styles.show : ""
+            isShowMenu ? styles.show : ""
           }`}
         >
           <div className={styles.logo}>
-            <a href="/">
+            <NavLink to="/" onClick={() => handleShowMenu(false)}>
               <img src={logo} alt="My store" className=" lskdjf" />
-            </a>
+            </NavLink>
           </div>
           {getMenuList(menuItems)}
           <div className={styles.categoriesWrapper}>
             <p>All Categories</p>
-            <Categories type="mobile" />
+            <Categories type="mobile" handleShowMenu={handleShowMenu}/>
           </div>
         </div>
       </div>
@@ -86,11 +94,20 @@ const Navigation = ({ isShow = false, showMenuHandler }) => {
         onMouseOver={(e) => handleNavMouseOver(e, "show")}
         onMouseLeave={(e) => handleNavMouseOver(e, "hide")}
       >
-        <div data-id="nav-category" className={`${styles.categories}`}>
+        <div
+          data-id="nav-category"
+          className={`${styles.categories}`}
+          onMouseEnter={() => handleShowMenu(true)}
+          onMouseLeave={() => handleShowMenu(false)}
+        >
           <IoMenu />
           <p>All categories</p>
-          <div className={styles.categories__wrapper}>
-            <Categories type="desktop" />
+          <div
+            className={`${styles.categories__wrapper} ${
+              isShowMenu ? styles.show : ""
+            }`}
+          >
+            <Categories type="desktop" handleShowMenu={handleShowMenu} />
           </div>
         </div>
         {getMenuList(menuItems)}
