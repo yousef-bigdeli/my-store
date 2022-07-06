@@ -10,12 +10,18 @@ import OfferPage from "./pages/OfferPage.jsx";
 const Router = () => {
   return useRoutes([
     { path: "/", element: <HomePage /> },
-    { path: "/product/:id/:title", element: <ProductPage /> },
-    { path: "/category/:name/:brand", element: <CategoryPage /> },
-    { path: "/category/:name", element: <CategoryPage /> },
-    { path: "/faq", element: <FaqPage /> },
-    { path: "/offer", element: <OfferPage /> },
-    { path: "/best-selling", element: <BestSellingPage /> },
+    { path: "product/:id/:title", element: <ProductPage /> },
+    {
+      path: "category",
+      element: <CategoryPage />,
+      children: [
+        { path: ":name/:brand", element: <CategoryPage /> },
+        { path: ":name", element: <CategoryPage /> },
+      ],
+    },
+    { path: "faq", element: <FaqPage /> },
+    { path: "offer", element: <OfferPage /> },
+    { path: "best-selling", element: <BestSellingPage /> },
     { path: "*", element: <Page404 /> },
   ]);
 };
