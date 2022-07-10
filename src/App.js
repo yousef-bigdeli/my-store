@@ -1,9 +1,13 @@
-import { Routes, Route, useRoutes } from "react-router";
 import Router from "./Router";
+import Layout from "./Layout/Layout";
 import "./styles/App.css";
 
 function App() {
-  return <Router />;
+  return (
+    <Layout>
+      <Router />
+    </Layout>
+  );
 }
 
 export default App;

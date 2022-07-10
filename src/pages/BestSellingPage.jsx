@@ -1,11 +1,5 @@
-import Layout from "../Layout/Layout";
-
 const BestSellingPage = () => {
-  return (
-    <Layout>
-      <h2>Best Selling Products</h2>
-    </Layout>
-  );
+  return <h2>Best Selling Products</h2>;
 };
 
 export default BestSellingPage;
