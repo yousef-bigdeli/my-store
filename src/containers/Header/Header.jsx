@@ -10,7 +10,7 @@ import { IoLogInOutline, IoPerson } from "react-icons/io5";
 
 const Header = () => {
   return (
-    <header style={{ borderBottom: "2px solid #f0f0f1" }}>
+    <header className={styles.headerWrapper}>
       <div className="container">
         <div className={styles.header}>
           <div className={styles.logoWrapper}>

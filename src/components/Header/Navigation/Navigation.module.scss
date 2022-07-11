@@ -17,6 +17,7 @@
     font-size: 2.5rem;
     color: $primaryTextColor;
     cursor: pointer;
+    z-index: 100;
     @include response(desktop) {
       display: none;
     }
@@ -95,8 +96,21 @@
 .desktopMenu {
   display: none;
   margin: 0 16px;
+  transform: translateY(-42px);
+  max-height: 0;
+  transition: all 0.3s ease-in-out;
   @include response(desktop) {
     display: flex;
+  }
+
+  &.show {
+    transform: translateY(0);
+    max-height: 42px;
+  }
+
+  .menuWrapper {
+    display: flex;
+    align-items: center;
   }
 
   .categories {
@@ -141,17 +155,16 @@
       }
     }
   }
-
-  .hoverEffect {
-    display: block;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    max-width: 0;
-    height: 2px;
-    transition: max-width 0.3s;
-    background-color: $primaryColor;
-    pointer-events: none;
-  }
+}
+.hoverEffect {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  max-width: 0;
+  height: 2px;
+  transition: max-width 0.3s;
+  background-color: $primaryColor;
+  pointer-events: none;
 }
