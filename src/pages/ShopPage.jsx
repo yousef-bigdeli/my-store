@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 
-const CategoryPage = () => {
+const ShopPage = () => {
   const { pathname } = useLocation();
   // const { name, brand } = useParams();
 
@@ -27,4 +27,4 @@ const CategoryPage = () => {
   );
 };
 
-export default CategoryPage;
+export default ShopPage;

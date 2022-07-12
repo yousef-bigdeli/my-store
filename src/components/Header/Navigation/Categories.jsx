@@ -106,7 +106,7 @@ const categories = [
 const CategoryLink = ({ children, to, className, handleShowMenu }) => {
   return (
     <NavLink
-      to={`/category/${to}`}
+      to={`/shop/${to}`}
       className={className}
       onClick={() => handleShowMenu(false)}
     >

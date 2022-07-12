@@ -1,6 +1,6 @@
 import { useRoutes } from "react-router";
 import BestSellingPage from "./pages/BestSellingPage";
-import CategoryPage from "./pages/CategoryPage";
+import ShopPage from "./pages/ShopPage";
 import FaqPage from "./pages/FaqPage";
 import HomePage from "./pages/HomePage";
 import Page404 from "./pages/Page404";
@@ -12,11 +12,11 @@ const Router = () => {
     { path: "/", element: <HomePage /> },
     { path: "product/:id/:title", element: <ProductPage /> },
     {
-      path: "category",
-      element: <CategoryPage />,
+      path: "shop",
+      element: <ShopPage />,
       children: [
-        { path: ":name/:brand", element: <CategoryPage /> },
-        { path: ":name", element: <CategoryPage /> },
+        { path: ":name/:brand", element: <ShopPage /> },
+        { path: ":name", element: <ShopPage /> },
       ],
     },
     { path: "faq", element: <FaqPage /> },
