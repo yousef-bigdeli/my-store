@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
+import ShopList from '../containers/ShopList/ShopList';
 
 const ShopPage = () => {
   const { pathname } = useLocation();
@@ -23,6 +24,7 @@ const ShopPage = () => {
   return (
     <>
       <Breadcrumb crumbs={crumbs} />
+      <ShopList />
     </>
   );
 };
