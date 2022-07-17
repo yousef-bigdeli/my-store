@@ -58,7 +58,6 @@
 
     &:hover {
       transform: scale(1.05);
-      // box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.3);
     }
   }
 
@@ -90,12 +89,6 @@
     @include response(desktop) {
       padding: 0 12px 12px;
     }
-  }
-
-  .title {
-  }
-
-  .price {
   }
 
   .rating {
