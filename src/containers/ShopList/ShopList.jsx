@@ -1,4 +1,4 @@
-// import ProductList from "../../components/ShopList/ProductList";
+import ProductList from "../../components/ShopList/ProductList";
 import Filters from "../../components/ShopList/Filters";
 import styles from "./ShopList.module.scss";
 
@@ -7,7 +7,7 @@ const ShopList = () => {
     <div className="container">
       <div className={styles.shopList}>
         <Filters />
-        {/* <ProductList /> */}
+        <ProductList />
       </div>
     </div>
   );
