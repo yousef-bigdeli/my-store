@@ -1,0 +1,23 @@
+@import "../../styles/variables.scss";
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.breadcrumb-item {
+  display: flex;
+  font-size: 1.3rem;
+}
+
+.breadcrumb-link {
+  text-transform: capitalize;
+  &:hover{
+    color: $primaryColor;
+  }
+}
+
+.separator {
+  margin: 0 8px;
+}

@@ -1,0 +1,140 @@
+@import "../../styles/variables";
+
+.mobileFilters {
+  display: flex;
+
+  @include response(desktop) {
+    display: none;
+  }
+
+  .filterBtn {
+    background-color: $primaryColor;
+    color: #fff;
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 0;
+
+    .icon {
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      margin-right: 0.8rem;
+    }
+  }
+
+  .filterMenu {
+    & > div {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      z-index: 100;
+      transition: 0.5s;
+      visibility: hidden;
+      &.show {
+        visibility: visible;
+      }
+    }
+  }
+
+  .filterMenu__cover {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    opacity: 0;
+    &.show {
+      opacity: 1;
+    }
+  }
+
+  .filterMenu__content {
+    width: 300px;
+    background-color: #fff;
+    padding: 16px;
+    transform: translateX(-300px);
+
+    &.show {
+      transform: translateX(0);
+    }
+  }
+
+  .filterCloseBtn {
+    width: 100%;
+    margin-bottom: 16px;
+    & > button {
+      width: 100%;
+      border: 0;
+      background: none;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+    }
+
+    svg {
+      display: block;
+      margin-right: 8px;
+      font-size: 2.4rem;
+    }
+  }
+
+}
+
+.desktopFilters {
+  display: none;
+  width: 20%;
+  max-width: 330px;
+  @include response(desktop) {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+}
+
+
+.accardion {
+  .accardionItem {
+    border-radius: 5px;
+    background-color: #fff;
+
+    input {
+      display: none;
+    }
+
+    @include response(desktop){
+      border: 1px solid #ced4da;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .accardionHeader {
+    background-color: $secondaryColor;
+    font-size: 1.6rem;
+    padding: 1.2rem 1.6rem;
+    width: 100%;
+    border: 0;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+    color: $titleTextColor;
+  }
+
+  .accardionCollapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease-in-out;
+    margin-top: 1.2rem;
+    &.show{
+      max-height: 100vh;
+    }
+  }
+}

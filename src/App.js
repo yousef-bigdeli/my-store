@@ -1,10 +1,12 @@
-import "./App.css";
+import Router from "./Router";
+import Layout from "./Layout/Layout";
+import "./styles/App.css";
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <Layout>
+      <Router />
+    </Layout>
   );
 }
 

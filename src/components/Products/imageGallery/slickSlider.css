@@ -1,0 +1,36 @@
+.magnifier-image {
+  object-fit: contain;
+}
+
+.slick-slide {
+  padding: 4px;
+}
+
+.slick-initialized .slick-slide {
+  display: block;
+  max-width: 120px !important;
+}
+
+.slick-prev {
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background: unset;
+  border: 0;
+  cursor: pointer;
+  font-size: 2rem;
+  transform: translate(-115%, -50%);
+}
+
+.slick-next {
+  color: black;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  background: unset;
+  border: 0;
+  cursor: pointer;
+  font-size: 2rem;
+  transform: translate(115%, -50%);
+}
