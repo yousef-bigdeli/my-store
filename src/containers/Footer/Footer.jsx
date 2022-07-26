@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className="container">
+      <div className="appContainer">
         <div className={styles.content}>
           <div>
             <NavLink to="/">

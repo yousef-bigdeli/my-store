@@ -5,6 +5,7 @@
   width: 100%;
   border-bottom: 2px solid $borderColor;
   background-color: #fff;
+  z-index: 1000;
 
   @include response(desktop) {
     position: fixed;

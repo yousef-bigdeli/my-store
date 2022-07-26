@@ -3,7 +3,7 @@ import styles from "./ProductDetails.module.scss";
 
 const ProductDetails = ({ product }) => {
   return (
-    <div className="container">
+    <div className="appContainer">
       <div className={styles.productDetails}>
         <ProductGallery images={product.images} />
         <div className={styles.product}></div>

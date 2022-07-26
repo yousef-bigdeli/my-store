@@ -4,7 +4,7 @@ import styles from "./ShopList.module.scss";
 
 const ShopList = () => {
   return (
-    <div className="container">
+    <div className="appContainer">
       <div className={styles.shopList}>
         <Filters />
         <ProductList />
