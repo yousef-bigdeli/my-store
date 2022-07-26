@@ -5,7 +5,7 @@ const ProductPage = () => {
   // const { id, title } = useParams();
   const product = {
     id: "MS-1",
-    title: "Macbook pro 2021",
+    title: "Macbook pro 2020",
     images: [
       { image: "https://s6.uupload.ir/files/macbook_kiby.jpg", text: "mac1" },
       {
@@ -25,8 +25,8 @@ const ProductPage = () => {
     ],
     price: "3200",
     rating: 4.7,
-    description: "",
-    colors: ["grey"],
+    description: "Apple Macbook pro 2020 M1 8gb 256",
+    colors: ["grey", "silver", "black", "white"],
     quantity: 12,
     specifics: {},
   };
