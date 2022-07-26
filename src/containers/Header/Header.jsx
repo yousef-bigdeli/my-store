@@ -11,7 +11,7 @@ import { IoLogInOutline, IoPerson } from "react-icons/io5";
 const Header = () => {
   return (
     <header className={styles.headerWrapper}>
-      <div className="container">
+      <div className="appContainer">
         <div className={styles.header}>
           <div className={styles.logoWrapper}>
             <div>

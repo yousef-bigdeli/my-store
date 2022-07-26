@@ -6,7 +6,7 @@ const Breadcrumb = ({ crumbs }) => {
 
   return (
     crumbs.length > 2 && (
-      <nav className="container">
+      <nav className="appContainer">
         <ol className="breadcrumb">
           {crumbs.map(({ path, title }, index) => (
             <li key={path} className="breadcrumb-item">
