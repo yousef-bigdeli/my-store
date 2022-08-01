@@ -1,0 +1,65 @@
+@import "../../styles/variables.scss";
+
+$mobilePadding: 1.2rem 0.8rem;
+$desktopPadding: 2rem 1.6rem;
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 420px;
+  height: 400px;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 20px;
+  box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.2);
+
+  @include response(tablet) {
+    max-width: 480px;
+  }
+  @include response(desktop) {
+    max-width: 600px;
+    height: 450px;
+  }
+  h2 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+}
+
+.inputControl {
+  background-color: #f4f8f7;
+  color: #898d8c;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  label {
+    padding: $mobilePadding;
+    @include response(desktop) {
+      padding: $desktopPadding;
+    }
+  }
+}
+
+.formInput {
+  color: $titleTextColor;
+  background-color: unset;
+  padding: $mobilePadding;
+  outline: none;
+  width: 100%;
+
+  @include response(desktop) {
+    padding: $desktopPadding;
+  }
+  &::placeholder {
+    color: #898d8c;
+  }
+}
+
+.formButton {
+  width: 100%;
+  padding: $mobilePadding;
+  border-radius: 8px;
+}

@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import Page404 from "./pages/Page404";
 import ProductPage from "./pages/ProductPage";
 import OfferPage from "./pages/OfferPage.jsx";
+import LoginPage from './pages/LoginPage';
 
 const Router = () => {
   return useRoutes([
@@ -22,6 +23,7 @@ const Router = () => {
     { path: "faq", element: <FaqPage /> },
     { path: "offer", element: <OfferPage /> },
     { path: "best-selling", element: <BestSellingPage /> },
+    { path: "login", element: <LoginPage /> },
     { path: "*", element: <Page404 /> },
   ]);
 };

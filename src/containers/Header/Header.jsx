@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Navigation from "../../components/Header/Navigation/Navigation";
 import SearchBar from "../../components/Header/SearchBar";
@@ -9,6 +9,8 @@ import logo from "../../assets/images/logo.png";
 import { IoLogInOutline, IoPerson } from "react-icons/io5";
 
 const Header = () => {
+  const { pathname } = useLocation();
+
   return (
     <header className={styles.headerWrapper}>
       <div className="appContainer">
@@ -25,7 +27,11 @@ const Header = () => {
             <SearchBar />
             <div className={styles.userSection}>
               <div className={styles.login}>
-                <Link to="/login" className={styles.link}>
+                <Link
+                  to="/login"
+                  state={{ backUrl: pathname }}
+                  className={styles.link}
+                >
                   <span>Login</span>
                   <span className={styles.icon}>
                     <IoLogInOutline style={{ width: "24px", height: "24px" }} />
