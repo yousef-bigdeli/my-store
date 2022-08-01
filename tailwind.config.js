@@ -46,7 +46,7 @@ module.exports = {
       none: "0",
       DEFAULT: "4px",
       8: "8px",
-      full: "100%"
+      full: "100%",
     },
     extend: {
       colors: {
@@ -55,8 +55,12 @@ module.exports = {
         titleTextColor: "#333",
         primaryTextColor: "#666",
         borderColor: "#e0e0e2",
+        loginBg: "#F9FAFB",
       },
     },
+    boxShadow: {
+      'soft': '0 0px 5px 0px rgba(0, 0, 0, 0.3)',
+    }
   },
   plugins: [],
 };
