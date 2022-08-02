@@ -1,12 +1,11 @@
-import Header from "../containers/Header/Header";
-import Footer from "../containers/Footer/Footer";
-import "./Layout.scss";
+import Header from "./container/Header/Header";
+import Footer from "./container/Footer/Footer";
 
 const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className="pt-4 pb-20 md:pt-30">{children}</main>
       <Footer />
     </>
   );

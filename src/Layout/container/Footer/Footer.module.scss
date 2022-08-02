@@ -1,0 +1,124 @@
+@import "styles/variables";
+
+.footer {
+  width: 100%;
+  border-top: 1px solid $borderColor;
+
+  .content {
+    padding: 4rem 1.6rem 2.4rem;
+    display: flex;
+    flex-direction: column;
+    @include response(desktop) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    img{
+      width: 150px;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      font-size: 1.3rem;
+      margin: 12px 0;
+      p {
+        font-weight: 700;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .copy {
+    text-align: center;
+    padding: 1.6rem;
+    border-top: 1px solid $borderColor;
+  }
+
+  .newsEmail {
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      @include response(desktop){
+        font-size: calc(min(1.8rem, 1.3vw));
+      }
+    }
+    p{
+      font-size: 1.3rem;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+      margin: 1.6rem 0;
+    }
+
+    input {
+      flex: 1;
+      height: 50px;
+      border: 0;
+      padding: 16px;
+      outline: 0;
+      background-color: $secondaryColor;
+    }
+
+    button {
+      background-color: $primaryColor;
+      border: 0;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: 700;
+      font-size: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.footerLinks {
+  display: flex;
+  margin: 1.6rem 0;
+
+  @include response(desktop) {
+    width: 45%;
+    min-width: 430px;
+    margin: 0;
+  }
+
+  .list{
+    line-height: 3.6rem;
+  }
+
+  .column {
+    width: 50%;
+
+    p {
+      font-weight: 700;
+      color: $titleTextColor;
+      font-size: 1.4rem;
+      @include response(desktop){
+        font-size: calc(min(1.8rem, 1.3vw));
+      }
+    }
+
+    .footerLink {
+      font-size: 1.3rem;
+    }
+
+    &:last-child {
+      display: none;
+      @include response(desktop) {
+        display: block;
+      }
+    }
+
+    @include response(desktop) {
+      width: 30%;
+      margin: 0 1.2rem;
+    }
+  }
+}

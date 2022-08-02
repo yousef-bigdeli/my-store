@@ -1,0 +1,22 @@
+@import "styles/variables";
+
+.colorTitle {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.productColor {
+  cursor: pointer;
+  border: 1px solid #d1d5db;
+
+  &:hover + .colorTitle {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.colorRadio:checked + .productColor {
+  -webkit-box-shadow: 0px 0px 5px 0px $primaryColor;
+  box-shadow: 0px 0px 5px 0px $primaryColor;
+}

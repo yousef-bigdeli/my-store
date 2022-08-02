@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "$assets": ["src/assets"]
+    }
+  },
+  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.jsx"],
+  "exclude": ["node_modules", "**/node_modules", "build"]
+}
