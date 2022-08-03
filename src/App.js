@@ -1,4 +1,4 @@
-import Router from "./Router";
+import Router from "./Routes/Router";
 import Layout from "./Layout/Layout";
 import "./styles/App.css";
 

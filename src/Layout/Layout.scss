@@ -1,8 +1,0 @@
-@import "../styles/variables.scss";
-
-main {
-  padding: 1.6rem 0 8rem;
-  @include response(desktop) {
-    padding-top: 13rem;
-  }
-}
